@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Adivina el número</title>
+    <link rel="stylesheet" href="numeros.css">
+   
+</head>
+<body>
+    <h1>¡Adivina el número!</h1>
+    <p>Introduce un número entre 1 y 100:</p>
+    <input type="number" id="userGuess" min="1" max="100" placeholder="1-100">
+    <button onclick="comprobarIntento()">Comprobar</button>
+    
+    <p id="mensajeResultado"></p>
+
+    <script>
+        const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+        let intentos = 0;
+
+        function comprobarIntento() {
+            const intentoUsuario = Number(document.getElementById('userGuess').value);
+            intentos++;
+            const mensajeResultado = document.getElementById('mensajeResultado');
+
+            if (intentoUsuario === numeroSecreto) {
+                mensajeResultado.textContent = `¡Correcto! Adivinaste el número en ${intentos} intentos.`;
+                mensajeResultado.style.color = 'green';
+            } else if (intentoUsuario > numeroSecreto) {
+                mensajeResultado.textContent = 'Demasiado alto. Intenta de nuevo.';
+                mensajeResultado.style.color = 'red';
+            } else {
+                mensajeResultado.textContent = 'Demasiado bajo. Intenta de nuevo.';
+                mensajeResultado.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
